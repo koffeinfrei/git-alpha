@@ -10,12 +10,6 @@ else
   exit 1
 fi 
 
-# Gets all the lines that were last editred
-# by the user '$1'
-current_lines_by_user() {
-  git_blames | grep $1 | wc -l
-}
-
 # Gets the total lines of source code
 total_lines() {
   source_files | xargs wc -l | grep ' total$' | awk '{print $1}'
@@ -29,12 +23,13 @@ source_files() {
 
 # Gets all blamed lines of all source files in the repository
 git_blames() {
-  source_files | xargs -n1 git blame
+  source_files | xargs -n1 git blame -t -l -c
 }
 
-# Gets the unique contributors to the source code repository
-git_contributors() {
- git shortlog -ns | awk '{print $2}' | uniq
+# Extract the user from the blame output
+# stdin: git blame output
+extract_contributors_from_git_blames() {
+  awk -F '\t' '{print $2}' | sed 's/(//'
 }
 
 # Calculates the percentage, rounded to 2 decimal places
@@ -44,13 +39,22 @@ percent() {
   printf "%0.2f" $(echo "100 / $2 * $1" | bc -l)
 }
 
+# Gets all the lines that were last edited
+# by the contributors
+current_lines_by_users() {
+  git_blames | extract_contributors_from_git_blames | sort | uniq -c | sort -rn
+}
+
 # ------------------------------------------------------------------------------
 
 total_lines=$(total_lines)
+current_lines_by_users=$(current_lines_by_users)
+longest_name_count=$(echo "$current_lines_by_users" | awk '{$1=""; print $0}' | wc -L)
+name_pad=$(expr $longest_name_count + 2)
 
-for contributor in $(git_contributors); do
-  current_lines_by_user=$(current_lines_by_user $contributor)
-  percent=$(percent $current_lines_by_user $total_lines)
-  
-  printf "%-15s %6s/%-6s (%s%%)\n" $contributor $current_lines_by_user $total_lines $percent
+echo "$current_lines_by_users" | while read line; do
+  line_count=$(echo $line | awk '{print $1}')
+  contributor=$(echo $line | awk '{$1=""; print $0}')
+  percent=$(percent $line_count $total_lines)
+  printf "%-${name_pad}s %6s/%-6s (%s%%)\n" "$contributor" $line_count $total_lines $percent
 done
