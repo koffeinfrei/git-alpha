@@ -18,7 +18,7 @@ total_lines() {
 # Gets all the source files in the repository
 # (excluding bindary files)
 source_files() {
-  git ls-files $start_dir | xargs -n1 grep -Il -d skip .
+  git ls-files -z $start_dir | xargs -0 grep -Il -d skip .
 }
 
 # Gets all blamed lines of all source files in the repository
