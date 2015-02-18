@@ -12,7 +12,7 @@ fi
 
 # Gets the total lines of source code
 total_lines() {
-  source_files | xargs wc -l | grep ' total$' | awk '{print $1}'
+  source_files | xargs cat | wc -l
 }
 
 # Gets all the source files in the repository
