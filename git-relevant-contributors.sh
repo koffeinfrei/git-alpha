@@ -54,7 +54,7 @@ name_pad=$(expr $longest_name_count + 2)
 
 echo "$current_lines_by_users" | while read line; do
   line_count=$(echo $line | awk '{print $1}')
-  contributor=$(echo $line | awk '{$1=""; print $0}')
+  contributor=$(echo $line | awk '{$1=""; gsub(/^ /, "", $0); print $0}')
   percent=$(percent $line_count $total_lines)
   printf "%-${name_pad}s %6s/%-6s (%s%%)\n" "$contributor" $line_count $total_lines $percent
 done
