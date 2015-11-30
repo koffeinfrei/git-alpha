@@ -6,7 +6,7 @@ start_dir=$1
 if [ -n "$1" ] && [ -d $start_dir ]; then
   echo "Scanning directory $start_dir..."
 else 
-  echo "Please provide a valid directory as the first argument\n    Example: $0 app/"
+  echo "Please provide a valid directory as the first argument\n    Example: $0 git-repository/"
   exit 1
 fi 
 
