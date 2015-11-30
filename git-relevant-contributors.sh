@@ -12,18 +12,18 @@ fi
 
 # Gets the total lines of source code
 total_lines() {
-  source_files | xargs cat | wc -l
+  (cd $start_dir && source_files | xargs cat | wc -l)
 }
 
 # Gets all the source files in the repository
 # (excluding bindary files)
 source_files() {
-  git ls-files -z $start_dir | xargs -0 grep -Il -d skip .
+  (cd $start_dir && git ls-files -z | xargs -0 grep -Il -d skip .)
 }
 
 # Gets all blamed lines of all source files in the repository
 git_blames() {
-  source_files | xargs -n1 git blame -t -l -c
+  (cd $start_dir && source_files | xargs -n1 git blame -t -l -c)
 }
 
 # Extract the user from the blame output
