@@ -1,6 +1,6 @@
 #!/bin/sh
 
-start_dir=$1
+start_dir="$1"
 
 # bash check if directory exists
 if [ -n "$1" ] && [ -d $start_dir ]; then
