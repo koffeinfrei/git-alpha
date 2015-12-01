@@ -1,4 +1,4 @@
-# Git Fame
+# Git Claim
 
 Prints out the authors sorted by the percentage of currently active code in a
 git repository.
@@ -6,14 +6,14 @@ git repository.
 ## Usage
 
 ```bash
-./git-flame.sh
+./git-claim.sh
 
 # =>
-#   Scanning directory '~/src/git-flame'...
+#   Scanning directory '~/src/git-claim'...
 #   Alexis Reigel        97/97     (100.00%)
 
 # And now for a maybe a bit more interesting output
-./git-fame.sh ~/src/volt
+./git-claim.sh ~/src/volt
 
 # =>
 #  Ryan Stout              29972/39014  (76.82%)
