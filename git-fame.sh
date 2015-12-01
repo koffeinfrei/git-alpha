@@ -1,14 +1,15 @@
 #!/bin/sh
 
-start_dir="$1"
+HUMAN_OUTPUT=true
 
-# bash check if directory exists
-if [ -n "$1" ] && [ -d $start_dir ]; then
-  echo "Scanning directory $start_dir..."
-else 
-  echo "Please provide a valid directory as the first argument\n    Example: $0 git-repository/"
+# Help output
+help() {
+  echo "Usage: git-fame [options] <repository_path>"
+  echo "    -m       Machine readable output"
+  echo "    -h       Print this help"
+
   exit 1
-fi 
+}
 
 # Gets the total lines of source code
 total_lines() {
@@ -47,6 +48,32 @@ current_lines_by_users() {
 
 # ------------------------------------------------------------------------------
 
+while getopts ":m" opt; do
+  case $opt in
+    m)
+      HUMAN_OUTPUT=false
+      ;;
+    \?)
+      help
+      ;;
+  esac
+done
+
+# move on to the next argument
+shift $((OPTIND - 1))
+
+# get the directory argument
+start_dir="$1"
+
+# bash check if directory exists
+if ! [ -n "$1" ] && [ -d $start_dir ]; then
+  start_dir=$(pwd)
+fi
+
+if [ "$HUMAN_OUTPUT" = true ]; then
+  echo "Scanning directory $start_dir..."
+fi
+
 total_lines=$(total_lines)
 current_lines_by_users=$(current_lines_by_users)
 longest_name_count=$(echo "$current_lines_by_users" | awk '{$1=""; print $0}' | wc -L)
@@ -56,5 +83,9 @@ echo "$current_lines_by_users" | while read line; do
   line_count=$(echo $line | awk '{print $1}')
   contributor=$(echo $line | awk '{$1=""; gsub(/^ /, "", $0); print $0}')
   percent=$(percent $line_count $total_lines)
-  printf "%-${name_pad}s %6s/%-6s (%s%%)\n" "$contributor" $line_count $total_lines $percent
+  if [ "$HUMAN_OUTPUT" = true ]; then
+    printf "%-${name_pad}s %6s/%-6s (%s%%)\n" "$contributor" $line_count $total_lines $percent
+  else
+    echo "$contributor\t$line_count\t$total_lines\t$percent"
+  fi
 done
