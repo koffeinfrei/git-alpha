@@ -1,7 +1,5 @@
 #!/bin/sh
 
-HUMAN_OUTPUT=true
-
 # Help output
 help() {
   echo "Usage: git-fame [options] <repository_path>"
@@ -48,6 +46,8 @@ current_lines_by_users() {
 
 # ------------------------------------------------------------------------------
 
+HUMAN_OUTPUT=true
+
 while getopts ":m" opt; do
   case $opt in
     m)
@@ -65,13 +65,19 @@ shift $((OPTIND - 1))
 # get the directory argument
 start_dir="$1"
 
-# bash check if directory exists
-if ! [ -n "$1" ] && [ -d $start_dir ]; then
+# current directory as default
+if ! [ -n "$1" ]; then
   start_dir=$(pwd)
 fi
 
+# bash check if directory exists
+if ! [ -d $start_dir ]; then
+   echo "The directory '$start_dir' does not exist" >&2
+   exit 1
+fi
+
 if [ "$HUMAN_OUTPUT" = true ]; then
-  echo "Scanning directory $start_dir..."
+  echo "Scanning directory '$start_dir'..."
 fi
 
 total_lines=$(total_lines)
