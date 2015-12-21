@@ -2,7 +2,7 @@
 
 # Help output
 help() {
-  echo "Usage: git-claim [options] <repository_path>"
+  echo "Usage: git-alpha [options] <repository_path>"
   echo "    -m       Machine readable output"
   echo "    -h       Print this help"
 

@@ -1,4 +1,4 @@
-# Git Claim
+# Git Alpha
 
 Prints out the authors sorted by the percentage of currently active code in a
 git repository.
@@ -6,14 +6,14 @@ git repository.
 ## Usage
 
 ```bash
-./git-claim.sh
+./git-alpha.sh
 
 # =>
-#   Scanning directory '~/src/git-claim'...
+#   Scanning directory '~/src/git-alpha'...
 #   Alexis Reigel        97/97     (100.00%)
 
 # And now for a maybe a bit more interesting output
-./git-claim.sh ~/src/volt
+./git-alpha.sh ~/src/volt
 
 # =>
 #  Ryan Stout              29972/39014  (76.82%)
