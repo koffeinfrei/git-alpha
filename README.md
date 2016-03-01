@@ -6,14 +6,14 @@ git repository.
 ## Usage
 
 ```bash
-./git-alpha.sh
+$ ./git-alpha.sh
 
 # =>
 #   Scanning directory '~/src/git-alpha'...
 #   Alexis Reigel        97/97     (100.00%)
 
 # And now for a maybe a bit more interesting output
-./git-alpha.sh ~/src/volt
+$ ./git-alpha.sh ~/src/volt
 
 # =>
 #  Ryan Stout              29972/39014  (76.82%)
@@ -66,4 +66,20 @@ git repository.
 #  Dan Erikson                 1/39014  (0.00%)
 #  Anuja Joshi                 1/39014  (0.00%)
 
+```
+
+## Git alias
+
+You can create a git alias easily. Just add the following line in your
+`~/.gitconfig`.
+
+```bash
+[alias]
+  alpha = !~/bin/git-alpha.sh
+```
+
+Then, in your current git repository, just use it like so:
+
+```bash
+$ git alias
 ```
