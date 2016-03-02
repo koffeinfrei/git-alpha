@@ -36,7 +36,7 @@ $ ./git-alpha ~/src/volt
 #  Jason Goldberger           60/39014  (0.15%)
 #  Joran Kikke                54/39014  (0.14%)
 #  Neurodynamic               36/39014  (0.09%)
-#  Jose Añasco               24/39014  (0.06%)
+#  Jose Añasco                24/39014  (0.06%)
 #  Mario Zigliotto            23/39014  (0.06%)
 #  Joiey Seeley               23/39014  (0.06%)
 #  Jesse Whitham              19/39014  (0.05%)
@@ -45,11 +45,11 @@ $ ./git-alpha ~/src/volt
 #  askl56                     16/39014  (0.04%)
 #  Gabriel Rios               14/39014  (0.04%)
 #  Ricky Ng                   12/39014  (0.03%)
-#  Michał Matyas             12/39014  (0.03%)
+#  Michał Matyas              12/39014  (0.03%)
 #  Denny Mueller              12/39014  (0.03%)
 #  Robert H Grayson II         7/39014  (0.02%)
 #  Bozhidar Batsov             7/39014  (0.02%)
-#  Большов Андрей      6/39014  (0.02%)
+#  Большов Андрей              6/39014  (0.02%)
 #  DFYX                        6/39014  (0.02%)
 #  Gustavo Villa               5/39014  (0.01%)
 #  George                      5/39014  (0.01%)
@@ -57,7 +57,7 @@ $ ./git-alpha ~/src/volt
 #  Ilya Bylich                 4/39014  (0.01%)
 #  Strand McCutchen            3/39014  (0.01%)
 #  TJ Koblentz                 1/39014  (0.00%)
-#  René Föhring              1/39014  (0.00%)
+#  René Föhring                1/39014  (0.00%)
 #  Peter Indiola               1/39014  (0.00%)
 #  Jeehoo Ahn                  1/39014  (0.00%)
 #  huochunpeng                 1/39014  (0.00%)
@@ -65,7 +65,6 @@ $ ./git-alpha ~/src/volt
 #  Denis                       1/39014  (0.00%)
 #  Dan Erikson                 1/39014  (0.00%)
 #  Anuja Joshi                 1/39014  (0.00%)
-
 ```
 
 ## Git alias
