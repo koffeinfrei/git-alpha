@@ -83,3 +83,6 @@ Then, in your current git repository, just use it like so:
 ```bash
 $ git alias
 ```
+
+## License
+Licensed under the [GNU General Public License v3.0](LICENSE)
